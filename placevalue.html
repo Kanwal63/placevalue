@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Value Game</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e6a98a;
+    text-align: center;
+}
+
+/* HEADER */
+.header {
+    background: #1f4a7c;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* TITLE */
+.title h1 {
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+.subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* BOXES */
+.box-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.box {
+    width: 90px;
+    height: 90px;
+    background: #eee;
+    border-radius: 20px;
+    font-size: 35px;
+    line-height: 90px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* LABELS */
+.labels {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.h { color: green; }
+.t { color: blue; }
+.o { color: purple; }
+
+/* BUTTON */
+button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 25px;
+    border: none;
+    background: #2ea44f;
+    color: white;
+}
+
+/* RESULT */
+.result {
+    background: #ddd;
+    margin-top: 25px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+/* HANDWRITING */
+.hand {
+    color: red;
+    font-size: 26px;
+    font-family: "Comic Sans MS", cursive;
+    margin: 15px;
+}
+
+/* FOOTER */
+.footer {
+    background: #1f4a7c;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* MOBILE */
+@media(max-width:500px){
+    .box { width:70px; height:70px; font-size:28px; line-height:70px; }
+    .title h1 { font-size:24px; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+🏫 Shaheen School & Coaching Center
+</div>
+
+<div class="title">
+<h1>🎯 Place Value Game</h1>
+<p class="subtitle">Tap numbers to learn Ones, Tens, Hundreds!</p>
+</div>
+
+<!-- BOXES -->
+<div class="box-container">
+    <div class="box" id="h">0</div>
+    <div class="box" id="t">0</div>
+    <div class="box" id="o">0</div>
+</div>
+
+<!-- LABELS -->
+<div class="labels">
+<div class="h">Hundreds (سینکڑے)</div>
+<div class="t">Tens (دہائیاں)</div>
+<div class="o">Ones (اکائیاں)</div>
+</div>
+
+<button onclick="generate()">🔄 New Number</button>
+
+<!-- RESULT -->
+<div class="result" id="result"></div>
+
+<!-- HAND TEXT -->
+<div class="hand" id="hand"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+📱 WhatsApp: +92 313 868 2068 | 📍 New Miana Pura West, Sialkot
+</div>
+
+<script>
+function oneWord(n){
+    let w=["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"];
+    return w[n];
+}
+
+function tensWord(n){
+    let w=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+    return w[n];
+}
+
+function generate(){
+    let num = Math.floor(Math.random()*900)+100;
+
+    let h = Math.floor(num/100);
+    let t = Math.floor(num/10)%10;
+    let o = num%10;
+
+    document.getElementById("h").innerText=h;
+    document.getElementById("t").innerText=t;
+    document.getElementById("o").innerText=o;
+
+    document.getElementById("result").innerHTML =
+        "Number: <b style='color:red'>" + num + "</b> = " +
+        "<span style='color:green'>" + h + " Hundreds</span>, " +
+        "<span style='color:blue'>" + t + " Tens</span>, " +
+        "<span style='color:purple'>" + o + " Ones</span>";
+
+    document.getElementById("hand").innerHTML =
+        oneWord(h) + " Hundred " + tensWord(t) + " " + oneWord(o);
+}
+</script>
+
+</body>
+</html>
